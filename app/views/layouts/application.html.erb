@@ -37,6 +37,11 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="#/">Login as: root</a></li>
             </ul>
+            <% if cookies[:cname] %>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="active" alt="logout"><a href="/auth/logout"><%= cookies[:cname] %>「登出」</a></li>
+              </ul>
+            <% end %>
           </div><!--/.nav-collapse -->
         </div>
      </nav>
