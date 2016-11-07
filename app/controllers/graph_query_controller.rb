@@ -30,7 +30,7 @@ class GraphQueryController < ApplicationController
         "format":"json",
         "maxDataPoints":1920
       }
-      http = Curl.post("http://#{api_server}/api/grafana/render_mutiple",postparams)
+      http = Curl.post("http://#{ENV["graph_api_server"]}/api/grafana/render_mutiple",postparams)
       if http.body =~ /endpoint/
         jsdata = JSON.parse(http.body_str)
         jsdata.each do |j|
@@ -79,7 +79,7 @@ class GraphQueryController < ApplicationController
         "format":"json",
         "maxDataPoints":1920
       }
-      http = Curl.post("http://#{api_server}/api/grafana/render_mutiple",postparams)
+      http = Curl.post("http://#{ENV["graph_api_server"]}/api/grafana/render_mutiple",postparams)
       if http.body =~ /endpoint/
         jsdata = JSON.parse(http.body_str)
         jsdata.each do |j|
