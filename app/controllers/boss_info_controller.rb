@@ -1,4 +1,6 @@
 class BossInfoController < ApplicationController
+  before_action :user_login?
+
   def platform
     @platforms = Host.select("platform").where("activate = 1").distinct.map{|r| r.platform }
     render json: @platforms
