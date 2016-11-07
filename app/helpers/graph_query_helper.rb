@@ -1,0 +1,2 @@
+module GraphQueryHelper
+end

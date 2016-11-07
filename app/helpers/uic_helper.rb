@@ -1,0 +1,2 @@
+module UicHelper
+end
