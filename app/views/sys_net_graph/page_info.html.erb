@@ -72,10 +72,10 @@
   </div>
   <div class="row" v-if="machines.length != 0">
     <div class="col-md-8" style="padding-top: 10px; padding-bottom: 5px;">
-      <button class="btn btn-info" v-on:click="sort('net.if.out.bits/iface=eth_all', 'desc')">out 大至小 </button>
-      <button class="btn btn-info" v-on:click="sort('net.if.out.bits/iface=eth_all', 'aesc')">out 小至大 </button>
-      <button class="btn btn-info" v-on:click="sort('net.if.in.bits/iface=eth_all', 'desc')">in 大至小 </button>
-      <button class="btn btn-info" v-on:click="sort('net.if.in.bits/iface=eth_all', 'aesc')">in 小至大 </button>
+      <button class="btn btn-info s1" v-on:click="sort('net.if.out.bits/iface=eth_all', 'desc', 's1')">out 大至小</button>
+      <button class="btn btn-info s2" v-on:click="sort('net.if.out.bits/iface=eth_all', 'aesc', 's2')">out 小至大</button>
+      <button class="btn btn-info s3" v-on:click="sort('net.if.in.bits/iface=eth_all', 'desc', 's3')">in 大至小</button>
+      <button class="btn btn-info s4" v-on:click="sort('net.if.in.bits/iface=eth_all', 'aesc', 's4')">in 小至大</button>
     </div>
   </div>
   <div v-if="machines.length != 0">
@@ -86,10 +86,15 @@
   </div>
   <div class="row small-up-1 medium-up-2 large-up-2">
     <img src="/hourglass.svg" style="margin-top:10px" v-if="loading">
-    <div v-for="host in machines" class="col-md-6">
-      <div> {{host}} / {{selected_platform}} / 总速率: - / bond模式: - </div>
-      <graph-grid v-bind:hostname="host">
-      </graph-grid>
+    <div v-for="host in machines" class="col-md-6 panel panel-success">
+      <div class="row panel-heading">
+        <div class="col-sm-6"> {{host}} [{{selected_platform}}]</div>
+        <netinfo-grid  v-bind:hostname="host"></netinfo-grid>
+      </div>
+      <div class=panel-body>
+        <graph-grid v-bind:hostname="host">
+        </graph-grid>
+      </div>
     </div>
   </div>
 </div>

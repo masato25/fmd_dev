@@ -1,4 +1,5 @@
 //= require vue/graph_helper
+//= require vue/netinfo_helper
 //= require vue/custom_timepicker
 
 $(document).on("turbolinks:load", function () {
@@ -21,6 +22,7 @@ $(document).on("turbolinks:load", function () {
       time_start: '',
       time_end: '',
       loading: false,
+      picked: 's0',
     },
     created: function() {
       var that
@@ -125,12 +127,13 @@ $(document).on("turbolinks:load", function () {
           })
         }
       },
-      sort: function(counter, order) {
+      sort: function(counter, order, option) {
         var that
         that = this
         var machinetemplate = that.machines.join()
         that.machines = []
         that.loading = true
+        that.picked = option
         func = '{"function":"orderByMetrics","filterBy":"' + counter + '","orderby":"' +  order + '"}'
         url = '/graph/order_query?counters=' + counter + '&hosts=' + machinetemplate + '&starttime=' + start_time + '&endtime=' + end_time + '&func=' + encodeURI(func)
         $.getJSON(url, function(resp){
