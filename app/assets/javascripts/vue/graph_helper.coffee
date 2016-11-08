@@ -36,13 +36,23 @@ Vue.component 'graph-grid', {
               data: d.data
             }
           )
-        $('#' + that.hostname).highcharts
-          chart: zoomType: 'x'
+        $('#' + that.hostname).highcharts(
+          chart:
+            zoomType: 'x'
+            height: 200
           title: text: false
           xAxis: type: 'datetime'
-          yAxis: title: text: '速率'
+          yAxis:
+            title:
+              text: '速率'
           legend: enabled: true
           series: cdata
+          tooltip:
+            crosshairs:
+              color: 'red'
+              dashStyle: 'solid'
+            shared: true
+        )
         that.loading = false
       ).fail( ->
           console.log("failed - " + this.hostname)

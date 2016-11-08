@@ -6,8 +6,8 @@ Vue.component 'netinfo-grid', {
   data: () ->
     {
       counter: 'nic.default.out.speed,nic.bond.mode',
-      out_speend: '未知',
-      bond_mode: '未知'
+      out_speend: 'none',
+      bond_mode: 'none'
     }
   props: ['hostname', 'start_time', 'end_time']
   created: ->

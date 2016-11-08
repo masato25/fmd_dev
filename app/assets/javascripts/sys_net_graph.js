@@ -157,4 +157,11 @@ $(document).on("turbolinks:load", function () {
   $('.pickdate_end').datetimepicker({
     format: 'YYYY-MM-DD HH:mm'
   })
+
+  $('#back-to-top').on('click', function (e) {
+    e.preventDefault();
+    $('html,body').animate({
+      scrollTop: 0
+    }, 700);
+  });
 })
