@@ -1,6 +1,9 @@
 source 'https://ruby.taobao.org'
 
 #custom setup ****
+#application server
+gem 'thin'
+
 #Environment Variables management
 gem "figaro"
 
