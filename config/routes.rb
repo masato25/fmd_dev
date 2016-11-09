@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "/" => "uic#login", as: "login_page"
+  get "/auth/boss" => "uic#bosslogin", as: "bosslogin"
   post "/auth/login" => "uic#post_login", as: "post_login"
   get "/auth/logout" => "uic#logout"
   get "/graph/sysinfo" => "sys_net_graph#page_info", as: 'page_info'
