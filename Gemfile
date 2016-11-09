@@ -1,6 +1,8 @@
 source 'https://ruby.taobao.org'
 
 #custom setup ****
+#Environment Variables management
+gem "figaro"
 
 #style
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -15,7 +17,6 @@ gem 'chronic'
 # for graph
 gem "highcharts-rails"
 gem 'lodash-rails'
-
 gem 'browserify-rails'
 gem 'vuejs-rails'
 
