@@ -88,7 +88,7 @@
     <img src="/hourglass.svg" style="margin-top:10px" v-if="loading">
     <div v-for="host in machines" class="col-md-6 panel panel-success">
       <div class="row panel-heading">
-        <div class="col-sm-6"> {{host}} [{{selected_platform}}]</div>
+        <div class="col-sm-6"> <glink v-bind:host="host"></glink> [{{selected_platform}}]</div>
         <netinfo-grid  v-bind:hostname="host"></netinfo-grid>
       </div>
       <div class=panel-body>

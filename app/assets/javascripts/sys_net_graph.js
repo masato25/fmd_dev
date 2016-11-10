@@ -1,6 +1,7 @@
 //= require vue/graph_helper
 //= require vue/netinfo_helper
 //= require vue/custom_timepicker
+//= require vue/grafana_link
 
 $(document).on("turbolinks:load", function () {
   //platforms
