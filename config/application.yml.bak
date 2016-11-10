@@ -1,0 +1,4 @@
+boss_sso_url: "https://boss-sso/login.html?returnUrl=http://boss-sso/auth/boss"
+graph_api_server: "0.0.0.0:40067"
+uic_addr: "0.0.0.0"
+boss_info_api: "https://boss-sso/Third/Single/getUserInfo"
