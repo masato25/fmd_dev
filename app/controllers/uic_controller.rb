@@ -18,6 +18,7 @@ class UicController < ApplicationController
         password: passwd
       }
       http = Curl.post("http://#{ENV["uic_addr"]}/api/v1/auth/login", postparams)
+      http.connect_timeout = 60
       if http.status =~ /200/
         res = JSON.parse(http.body)
         if res.has_key?("data")
@@ -45,6 +46,7 @@ class UicController < ApplicationController
     http = Curl.get(ENV["boss_info_api"]) do |conn|
       conn.headers['Cookie'] = "FASTWEB_CDNBOSS_SEESION=#{fastweb_session}"
     end
+    http.connect_timeout = 60
     res = JSON.parse(http.body)
     if res["data"]
       data = res["data"]
