@@ -78,7 +78,7 @@
   </div>
   <div class="row small-up-1 medium-up-2 large-up-2">
     <img src="/hourglass.svg" style="margin-top:10px" v-if="loading">
-    <div v-for="host in machines" class="col-md-6 panel panel-success">
+    <div v-for="host in machines" class="col-md-6 panel panel-success" id="nggraph-grid">
       <div class="row panel-heading">
         <div class="col-sm-6"> <glink v-bind:host="host"></glink> [{{selected_platform}}]</div>
         <netinfo-grid  v-bind:hostname="host"></netinfo-grid>
