@@ -1,0 +1,3 @@
+class NgSysController < ApplicationController
+
+end

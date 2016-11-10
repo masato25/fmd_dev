@@ -17,5 +17,9 @@ Rails.application.routes.draw do
   #Graph
   get "/graph/basic_query" => "graph_query#basic_query"
   get "/graph/order_query" => "graph_query#order_query"
+  get "/graph/query_sparkline" => "graph_query#basic_query_for_sparkline"
+
+  #NgGraph
+  get "/graph/ngsysinfo" => "ng_sys#ng_info", as: 'ng_info'
 
 end
