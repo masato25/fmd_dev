@@ -22,6 +22,7 @@ gem "highcharts-rails"
 gem 'lodash-rails'
 gem 'browserify-rails'
 gem 'vuejs-rails'
+gem 'jquery-sparkline-rails', github: 'cubus/jquery-sparkline-rails'
 
 #custom setup ****
 
