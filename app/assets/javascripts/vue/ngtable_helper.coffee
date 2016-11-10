@@ -1,14 +1,17 @@
+numeral = require('numeral')
 Vue.component 'ng-graph-grid', {
   template: '<div>
     <table class="table">
       <thead>
         <th>counter</th>
         <th>graph</th>
+        <th>max</th>
       </thead>
       <tbody>
         <tr v-for="(c, index) in countersmoke">
-          <td>{{counters[index]}}</td>
-          <td><div v-bind:id="hostname + c"></div></td>
+          <td class="col-md-3">{{counters[index]}}</td>
+          <td class="col-md-6"><div v-bind:id="hostname + c"></div></td>
+          <td class="col-md-3" v-bind:id="hostname + c"></td>
         </tr>
       </tbody>
     </table>
@@ -52,7 +55,10 @@ Vue.component 'ng-graph-grid', {
                 }
                 lineColor: that.mcolor[indx]
                 fillColor: that.mcolor[indx]
+                numberFormatter: (x)->
+                  return numeral(x).format('0.0 a')
               )
+              $("td#" + d.endpoint + fixedcounter).text(numeral(d.max).format('0.0 a'))
             else
               $("#" + d.endpoint + fixedcounter).text("no data")
             return d
