@@ -41,17 +41,20 @@ Vue.component 'ng-graph-grid', {
             indx = _.findIndex(that.counters, (c) ->
               return c == d.counter
             )
-            $("#" + d.endpoint + fixedcounter).sparkline(d.data,
-              type: "line"
-              width: '100%'
-              height: '25'
-              tooltipFormat: '<font color="white">{{y:val}}</font> [{{offset:date}}]'
-              tooltipValueLookups: {
-                'date': d.date
-              }
-              lineColor: that.mcolor[indx]
-              fillColor: that.mcolor[indx]
-            )
+            if d.data.length != 0
+              $("#" + d.endpoint + fixedcounter).sparkline(d.data,
+                type: "line"
+                width: '100%'
+                height: '25'
+                tooltipFormat: '<font color="white">{{y:val}}</font> [{{offset:date}}]'
+                tooltipValueLookups: {
+                  'date': d.date
+                }
+                lineColor: that.mcolor[indx]
+                fillColor: that.mcolor[indx]
+              )
+            else
+              $("#" + d.endpoint + fixedcounter).text("no data")
             return d
           )
         that.loading = false
