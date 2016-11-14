@@ -1,0 +1,71 @@
+<div class="row" id="ngsearchbar">
+  <h3>设备NG图</h3>
+  <div class="row">
+    <!-- <div class="col-md-2">
+      <%= label_tag(:ip, "主机名(IP):") %> <%= text_field_tag(:ip) %>
+    </div> -->
+    <div class="col-md-2">
+      <%= label_tag(:platform, "设备组:") %>
+      <select class="form-control" v-model="selected_platform" options="platforms">
+        <option v-for="option in platforms" v-bind:value="option.value">
+          {{ option.text }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <%= label_tag(:isp, "ISP:") %>
+      <select class="form-control" v-model="selected_isp" options="isp">
+        <option v-for="option in isp" v-bind:value="option.value">
+          {{ option.text }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <%= label_tag(:province, "省份:") %>
+      <select class="form-control" v-model="selected_province" options="provinces">
+        <option v-for="option in provinces" v-bind:value="option.value">
+          {{ option.text }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <%= label_tag(:datacenter, "机房:") %>
+      <select class="form-control" v-model="selected_datacenter" options="datacenter">
+        <option v-for="option in datacenter" v-bind:value="option.value">
+          {{ option.text }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row top-buffer">
+    <div class="col-md-2">
+      <span>预置:</span>
+      <span> <custom-timepicker></custom-timepicker> </span>
+    </div>
+    <div class="col-md-2">
+      <span>從:</span>
+      <input type="text" class="pickdate_start" v-on:click="customtime()">
+    </div>
+    <div class="col-md-2">
+      <span>至:</span>
+      <input type="text" class="pickdate_end" v-on:click="customtime()">
+    </div>
+    <div class="col-md-2">
+      <span class="query-bar">
+        <button type="submit" class="btn btn-default" v-on:click="query()">查询</button>
+      </span>
+    </div>
+    <div class="col-md-2 alert alert-danger" v-if="err_message != 0" >
+      {{err_message}}
+    </div>
+  </div>
+  <div v-if="machines.length != 0">
+    共 {{machines.length}} 台
+  </div>
+  <div class="row">
+    <hr>
+  </div>
+  <div class="row small-up-1 medium-up-2 large-up-2" v-if="machines.length != 0">
+    <netagginfo-grid v-bind:hostnames="machines"><netagginfo-grid/>
+  </div>
+</div>

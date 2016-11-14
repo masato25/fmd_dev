@@ -21,5 +21,6 @@ Rails.application.routes.draw do
 
   #NgGraph
   get "/graph/ngsysinfo" => "ng_sys#ng_info", as: 'ng_info'
+  get "/graph/ngagginfo" => "ng_sys#ng_agginfo"
 
 end

@@ -105,7 +105,7 @@ $(document).on("turbolinks:load", function () {
         start_time = $('.pickdate_start').val()
         end_time = $('.pickdate_end').val()
         that.err_message = ''
-        if(that.selected_platform == 'undefined' || that.selected_isp == 'undefined'){
+        if(that.selected_platform == 'undefined'){
           that.err_message = '平台 和 ISP 为必选栏位,请检查'
         }else if(!start_time.match(/\d{4}-\d{2}-\d{2}\s+\d+:\d+/g) || !end_time.match(/\d{4}-\d{2}-\d{2}\s+\d+:\d+/g)){
           that.err_message = '搜寻时间格式不对或是未指定,请检查'
