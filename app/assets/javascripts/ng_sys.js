@@ -25,6 +25,7 @@ $(document).on("turbolinks:load", function () {
       time_end: '',
       loading: false,
       picked: 's0',
+      options: []
     },
     created: function() {
       var that
