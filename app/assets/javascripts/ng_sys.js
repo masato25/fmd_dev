@@ -1,5 +1,8 @@
-//= require vue/ngtable_helper
+//= require vue/netinfo_helper
+//= require vue/custom_timepicker
+//= require vue/grafana_link
 //= require vue/select2
+
 
 $(document).on("turbolinks:load", function () {
   if($("#ngsearchbar").length == 0){
@@ -34,7 +37,7 @@ $(document).on("turbolinks:load", function () {
         url: '/boss/platform',
         success: function(res) {
           that.platforms = _.chain(res).map(function(k){
-            return {value: k, text: k}
+            return {id: k, text: k}
           }).value()
         },
         error: function(data) {
