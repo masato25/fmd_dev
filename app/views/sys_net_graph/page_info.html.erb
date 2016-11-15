@@ -6,15 +6,17 @@
     </div> -->
     <div class="col-md-2">
       <%= label_tag(:platform, "设备组:") %>
-      <select class="form-control" v-model="selected_platform" options="platforms">
+      <select2 :options="options" v-model="selected_platform" v-bind:options="platforms">
+        <option disabled value="0">Select one</option>
         <option v-for="option in platforms" v-bind:value="option.value">
           {{ option.text }}
         </option>
-      </select>
+      </select2>
     </div>
     <div class="col-md-2">
       <%= label_tag(:isp, "ISP:") %>
       <select class="form-control" v-model="selected_isp" options="isp">
+        <option disabled value="0">ALL</option>
         <option v-for="option in isp" v-bind:value="option.value">
           {{ option.text }}
         </option>
@@ -23,6 +25,7 @@
     <div class="col-md-2">
       <%= label_tag(:province, "省份:") %>
       <select class="form-control" v-model="selected_province" options="provinces">
+        <option disabled value="0">ALL</option>
         <option v-for="option in provinces" v-bind:value="option.value">
           {{ option.text }}
         </option>
@@ -39,6 +42,7 @@
     <div class="col-md-2">
       <%= label_tag(:datacenter, "机房:") %>
       <select class="form-control" v-model="selected_datacenter" options="datacenter">
+        <option disabled value="0">ALL</option>
         <option v-for="option in datacenter" v-bind:value="option.value">
           {{ option.text }}
         </option>

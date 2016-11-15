@@ -23,6 +23,7 @@ gem 'lodash-rails'
 gem 'browserify-rails'
 gem 'vuejs-rails'
 gem 'jquery-sparkline-rails', github: 'cubus/jquery-sparkline-rails'
+gem "select2-rails"
 
 #custom setup ****
 

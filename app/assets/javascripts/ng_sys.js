@@ -1,6 +1,9 @@
 //= require vue/ngtable_helper
 
 $(document).on("turbolinks:load", function () {
+  if($("#ngsearchbar").length == 0){
+    return
+  }
   //platforms
   var platforms = new Vue({
     el: '#ngsearchbar',

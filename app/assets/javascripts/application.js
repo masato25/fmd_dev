@@ -27,4 +27,8 @@
 //= require highcharts/modules/heatmap
 //= require highcharts/modules/no-data-to-display
 //= require jquery.sparkline
+//= require select2
 //= require_tree .
+
+//require vue
+Vuex = require('vuex')

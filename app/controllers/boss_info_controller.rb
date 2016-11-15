@@ -2,15 +2,15 @@ class BossInfoController < ApplicationController
   before_action :user_login?
 
   def platform
-    @platforms = Host.select("platform").where("activate = 1").distinct.map{|r| r.platform }
+    @platforms = Host.select("platform").where("activate = 1 and platform != ''").distinct.map{|r| r.platform }.sort!
     render json: @platforms
   end
 
   def find_isp
     platform = params[:platform]
     @isp = []
-    if platform != nil
-      @isp = Host.select("isp").where("activate = 1 and platform = '#{platform}'").distinct.map{|r| r.isp }
+    if platform != '0'
+      @isp = Host.select("isp").where("activate = 1 and platform = '#{platform}'").distinct.map{|r| r.isp }.sort!
     end
     render json: @isp
   end
@@ -19,15 +19,15 @@ class BossInfoController < ApplicationController
     platform = params[:platform]
     isp = params[:isp]
     @province = []
-    if platform != nil || isp != nil
+    if platform != '0' || isp != '0'
       sqlconn = Host.select("province").where("activate = 1")
-      if platform != nil
+      if platform != '0'
         sqlconn = sqlconn.where("platform = '#{platform}'")
       end
-      if isp != nil
+      if isp != '0'
         sqlconn = sqlconn.where("isp = '#{isp}'")
       end
-      @province = sqlconn.distinct.map{|r| r.province }
+      @province = sqlconn.distinct.map{|r| r.province }.sort!
     end
     render json: @province
   end
@@ -37,18 +37,18 @@ class BossInfoController < ApplicationController
     isp = params[:isp]
     province = params[:province]
     @mplace = []
-    if platform != nil || isp != nil || province != nil
+    if platform != '0' || isp != '0' || province != '0'
       sqlconn = Host.select("idc").where("activate = 1")
-      if platform != nil
+      if platform != '0'
         sqlconn = sqlconn.where("platform = '#{platform}'")
       end
-      if isp != nil
+      if isp != '0'
         sqlconn = sqlconn.where("isp = '#{isp}'")
       end
-      if province != nil
+      if province != '0'
         sqlconn = sqlconn.where("province = '#{province}'")
       end
-      @mplace = sqlconn.distinct.map{|r| r.idc }
+      @mplace = sqlconn.distinct.map{|r| r.idc }.sort!
     end
     render json: @mplace
   end
@@ -59,18 +59,18 @@ class BossInfoController < ApplicationController
     province = params[:province]
     datacenter = params[:datacenter]
     @mplace = []
-    if platform != nil || isp != nil || province != nil
+    if platform != '0' || isp != '0' || province != '0'
       sqlconn = Host.select("hostname").where("activate = 1")
-      if platform != nil && platform != 'undefined'
+      if platform != '0' && platform != 'undefined'
         sqlconn = sqlconn.where("platform = '#{platform}'")
       end
-      if isp != nil && isp != 'undefined'
+      if isp != '0' && isp != '0'
         sqlconn = sqlconn.where("isp = '#{isp}'")
       end
-      if province != nil && province != 'undefined'
+      if province != '0'
         sqlconn = sqlconn.where("province = '#{province}'")
       end
-      if datacenter != nil && datacenter != 'undefined'
+      if datacenter != '0'
         sqlconn = sqlconn.where("idc = '#{datacenter}'")
       end
       @mplace = sqlconn.distinct.map{|r| r.hostname }

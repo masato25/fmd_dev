@@ -2,8 +2,12 @@
 //= require vue/netinfo_helper
 //= require vue/custom_timepicker
 //= require vue/grafana_link
+//= require vue/select2
 
 $(document).on("turbolinks:load", function () {
+  if($("#searchbar").length == 0){
+    return
+  }
   //platforms
   var platforms = new Vue({
     el: '#searchbar',
@@ -14,16 +18,17 @@ $(document).on("turbolinks:load", function () {
       nodes: [],
       datacenter: [],
       machines: [],
-      selected_platform: 'undefined',
-      selected_isp: 'undefined',
-      selected_province: 'undefined',
-      selected_node: 'undefined',
-      selected_datacenter: 'undefined',
+      selected_platform: '0',
+      selected_isp: '0',
+      selected_province: '0',
+      selected_node: '0',
+      selected_datacenter: '0',
       err_message: '',
       time_start: '',
       time_end: '',
       loading: false,
       picked: 's0',
+      options: []
     },
     created: function() {
       var that
@@ -32,7 +37,7 @@ $(document).on("turbolinks:load", function () {
         url: '/boss/platform',
         success: function(res) {
           that.platforms = _.chain(res).map(function(k){
-            return {value: k, text: k}
+            return {id: k, text: k}
           }).value()
         },
         error: function(data) {
@@ -47,9 +52,9 @@ $(document).on("turbolinks:load", function () {
         that.isp = []
         that.province = []
         that.datacenter = []
-        that.selected_isp = 'undefined'
-        that.selected_province = 'undefined'
-        that.selected_datacenter = 'undefined'
+        that.selected_isp = '0'
+        that.selected_province = '0'
+        that.selected_datacenter = '0'
         $.ajax({
           url: '/boss/find_isp?platform=' + that.selected_platform,
           success: function(res) {
@@ -66,7 +71,7 @@ $(document).on("turbolinks:load", function () {
         var that
         that = this
         that.provinces = []
-        that.selected_province = 'undefined'
+        that.selected_province = '0'
         $.ajax({
           url: '/boss/find_province?platform=' + that.selected_platform + '&isp=' + that.selected_isp,
           success: function(res) {
@@ -83,7 +88,7 @@ $(document).on("turbolinks:load", function () {
         var that
         that = this
         that.datacenter = []
-        that.selected_datacenter = 'undefined'
+        that.selected_datacenter = '0'
         $.ajax({
           url: '/boss/find_datacenter?platform=' + that.selected_platform + '&isp=' + that.selected_isp + '&province=' + that.selected_province,
           success: function(res) {
@@ -105,8 +110,8 @@ $(document).on("turbolinks:load", function () {
         start_time = $('.pickdate_start').val()
         end_time = $('.pickdate_end').val()
         that.err_message = ''
-        if(that.selected_platform == 'undefined' || that.selected_isp == 'undefined'){
-          that.err_message = '平台 和 ISP 为必选栏位,请检查'
+        if(that.selected_platform == '0'){
+          that.err_message = '平台为必选栏位,请检查'
         }else if(!start_time.match(/\d{4}-\d{2}-\d{2}\s+\d+:\d+/g) || !end_time.match(/\d{4}-\d{2}-\d{2}\s+\d+:\d+/g)){
           that.err_message = '搜寻时间格式不对或是未指定,请检查'
         }else{
