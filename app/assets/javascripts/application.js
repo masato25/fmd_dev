@@ -31,4 +31,5 @@
 //= require_tree .
 
 //require vue
-Vuex = require('vuex')
+// online server can not reach npm server so disable a while unit need this
+// Vuex = require('vuex')
