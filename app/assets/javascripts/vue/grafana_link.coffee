@@ -9,5 +9,5 @@ Vue.component 'glink', {
     this.hosturl = this.genrul(this.host)
   methods:
     genrul: (host) ->
-      return "http://grafana.owl.fastweb.com.cn/dashboard/db/status?host=" + host
+      return "http://grafana.owl.fastweb.com.cn/dashboard/db/status?server=" + host
 }
