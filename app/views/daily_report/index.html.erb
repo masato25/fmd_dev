@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Daily Report - [ <%= @e.strftime("%Y-%m-%d") %> ]</h1>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <h3>单日 Top 10 告警</h3>
+      <%= bar_chart @data1, adapter: "highcharts" %>
+    </div>
+    <div class="col-sm-4">
+      <h3>Top 5 告警平台</h3>
+      <%= pie_chart @data2, adapter: "highcharts" %>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <th>平台</th>
+        <th>MTTR (min)</th>
+        <!-- <th>告警次数 complete / incomplete</th> -->
+      </thead>
+      <tbody>
+        <% @data3.each{|o| %>
+          <tr>
+            <td><%= o[:platform] %></td>
+            <td><%= o[:interval] %></td>
+            <!-- <td><%= o[:alerts] %></td> -->
+          </tr>
+        <%} %>
+      </tbody>
+    </table>
+  </div>
+</div>

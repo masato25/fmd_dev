@@ -20,6 +20,7 @@
 //= require lodash
 //= require vue
 // highcharts
+//= require chartkick
 //= require highcharts
 //= require highcharts/adapters/standalone-framework
 //= require highcharts/modules/data

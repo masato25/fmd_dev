@@ -1,6 +1,7 @@
 source 'https://ruby.taobao.org'
 
 #custom setup ****
+gem "chartkick"
 #application server
 gem 'thin'
 
